@@ -13,6 +13,11 @@ RUN mkdir /caddysrc \
 && rm -rf /caddysrc \
 && printf "0.0.0.0\nbrowse" > /etc/Caddyfile
 
+RUN apk add --update perl \
+&& curl -sL -o /tmp/hugo.tgz "https://github.com/spf13/hugo/releases/download/v0.15/hugo_0.15_linux_amd64.tar.gz" \
+&& tar -xf /tmp/hugo.tgz -C /tmp/ \
+&& mv /tmp/hugo_0.15_linux_amd64/hugo_0.15_linux_amd64 /usr/local/bin/hugo
+
 RUN mkdir /srv
 
 EXPOSE 2015
